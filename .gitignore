@@ -1,0 +1,40 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Compilados / builds
+dist/
+build/
+*.tsbuildinfo
+
+# Tests / cobertura
+coverage/
+.nyc_output/
+
+# Entorno
+.env
+.env.*
+!.env.example
+
+# Logs y temporales
+logs/
+*.log
+*.log.*
+tmp/
+.tmp/
+.cache/
+ts-node*
+.eslintcache
+
+# Editores / SO
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Plataformas
+.vercel/
+.render/
+
