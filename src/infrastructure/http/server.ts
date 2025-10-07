@@ -1,4 +1,4 @@
-import Fastify from 'fastify';
+import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import type { ApiErrorResponse } from '../../shared/types.js';
 import { DEFAULT_RULES } from '../../domain/businessCalendar.js';
@@ -7,8 +7,8 @@ import { ComputeBusinessDateUseCase, QuerySchema } from '../../application/Compu
 import type { ComputeBusinessDateInput } from '../../application/ComputeBusinessDate.js';
 import { RemoteHolidayProvider } from '../holidays/RemoteHolidayProvider.js';
 
-export async function buildServer() {
-  const app = Fastify({ logger: false });
+export async function buildServer(): Promise<FastifyInstance> {
+  const app: FastifyInstance = Fastify({ logger: false });
 
   let holidaySet: Set<string> | null = null;
   try {
@@ -17,7 +17,7 @@ export async function buildServer() {
     holidaySet = null;
   }
 
-  app.get('/', async (req, reply) => {
+  app.get('/', async (req: FastifyRequest, reply: FastifyReply) => {
     let q: z.infer<typeof QuerySchema>;
     try {
       q = QuerySchema.parse(req.query);
